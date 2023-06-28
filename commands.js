@@ -1,6 +1,6 @@
-import 'dotenv/config';
-import { getRPSChoices } from './game.js';
-import { capitalize, InstallGlobalCommands } from './utils.js';
+import "dotenv/config";
+import { getRPSChoices } from "./game.js";
+import { capitalize, InstallGlobalCommands } from "./utils.js";
 
 // Get the game choices from game.js
 function createCommandChoices() {
@@ -19,8 +19,14 @@ function createCommandChoices() {
 
 // Simple test command
 const TEST_COMMAND = {
-  name: 'ribbit',
-  description: 'ribbit',
+  name: "ribbit",
+  description: "ribbit",
+  type: 1,
+};
+
+const TODE_GIF_COMMAND = {
+  name: "gif",
+  description: "frog gif",
   type: 1,
 };
 
@@ -40,7 +46,6 @@ const TEST_COMMAND = {
 //   type: 1,
 // };
 
-
-const ALL_COMMANDS = [TEST_COMMAND];
+const ALL_COMMANDS = [TEST_COMMAND, TODE_GIF_COMMAND];
 
 InstallGlobalCommands(process.env.APP_ID, ALL_COMMANDS);
