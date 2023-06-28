@@ -22,6 +22,14 @@ const TEST_COMMAND = {
   name: 'ribbit',
   description: 'ribbit',
   type: 1,
+  options: [
+    {
+      type: 5,  // boolean
+      name: 'funky',
+      description: 'FuNkY',
+      required: false,
+    },
+  ],
 };
 
 // Command containing options

@@ -20,6 +20,10 @@ app.use(express.json({ verify: VerifyDiscordRequest(process.env.PUBLIC_KEY) }));
 // Store for in-progress games. In production, you'd want to use a DB
 const activeGames = {};
 
+const doMaybe = (todo) => {
+  return x => (Math.random() > 0.5 ? todo(x) : x);
+}
+
 /**
  * Interactions endpoint URL where Discord will send HTTP requests
  */
@@ -42,12 +46,13 @@ app.post('/interactions', async function (req, res) {
     const { name } = data;
 
     if (name === 'ribbit') {
+      let funky = false; // TODO: get the option value; data.options should be an array of all options or something
       // Send a message into the channel where command was triggered from
       return res.send({
         type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
         data: {
           // Fetches a random emoji to send from a helper function
-          content: 'ribbit',
+          content: funky ? [...name].map(doMaybe(x => x.toUpperCase())).join("") : name,
         },
       });
     }
